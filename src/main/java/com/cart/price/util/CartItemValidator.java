@@ -18,8 +18,6 @@ public class CartItemValidator {
         if (cartItem.getProduct().getName() == null) {
             throw new CartItemException("Product name can not be null");
         }
-
     }
-
 
 }

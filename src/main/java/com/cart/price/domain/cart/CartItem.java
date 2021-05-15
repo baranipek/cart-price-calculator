@@ -20,8 +20,8 @@ public class CartItem {
         this.pricing = pricing;
     }
 
-    public BigDecimal getTotalOrderItem() throws Exception {
-        return this.pricing.doPricing(this);
+    public BigDecimal getTotalOrderItem() {
+        return this.pricing.calculate(this);
     }
 
     public WeightUnit getWeightUnit() {

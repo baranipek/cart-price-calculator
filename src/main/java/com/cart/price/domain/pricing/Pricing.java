@@ -6,5 +6,6 @@ import com.cart.price.domain.cart.CartItem;
 import java.math.BigDecimal;
 
 public interface Pricing {
-    BigDecimal doPricing(CartItem cartItem) throws Exception;
+    BigDecimal calculate(CartItem cartItem);
+
 }
