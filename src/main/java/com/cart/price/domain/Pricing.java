@@ -1,4 +1,4 @@
-package com.cart.price.domain.pricing;
+package com.cart.price.domain;
 
 
 import com.cart.price.domain.cart.CartItem;
