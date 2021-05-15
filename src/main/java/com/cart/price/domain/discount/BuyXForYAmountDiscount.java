@@ -2,12 +2,12 @@ package com.cart.price.domain.discount;
 
 import java.math.BigDecimal;
 
-public class XForYDiscount implements Discount {
+public class BuyXForYAmountDiscount implements Discount {
 
     private BigDecimal amount;
     private BigDecimal amountPrice;
 
-    public XForYDiscount(BigDecimal amount, BigDecimal amountPrice) {
+    public BuyXForYAmountDiscount(BigDecimal amount, BigDecimal amountPrice) {
         this.amount = amount;
         this.amountPrice = amountPrice;
     }

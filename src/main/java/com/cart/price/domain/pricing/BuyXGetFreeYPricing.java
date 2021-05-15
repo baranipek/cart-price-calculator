@@ -7,6 +7,7 @@ import com.cart.price.exception.SufficientAmountForSpecificDiscountException;
 import java.math.BigDecimal;
 
 public class BuyXGetFreeYPricing implements Pricing {
+
     @Override
     public BigDecimal calculate(final CartItem cartItem) {
 
