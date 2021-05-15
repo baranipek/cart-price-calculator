@@ -5,6 +5,7 @@ import com.cart.price.domain.discount.BuyXGetYFreeDiscount;
 import com.cart.price.exception.SufficientAmountForSpecificDiscountException;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class BuyXGetFreeYPricing implements Pricing {
 
@@ -13,20 +14,26 @@ public class BuyXGetFreeYPricing implements Pricing {
 
         BuyXGetYFreeDiscount discount = (BuyXGetYFreeDiscount) cartItem.getDiscount();
         int orderAmount = cartItem.getAmount().intValue();
+        int totalDiscountAmount = discount.getBuyNProductAmount() + discount.getFreeProductAmount();
 
-        if (orderAmount < discount.getTotalProduct()) {
+        if (orderAmount < totalDiscountAmount) {
             throw new SufficientAmountForSpecificDiscountException("To use from this discount, " +
-                    "you should take more then " + discount.getTotalProduct() + " items");
+                    "you should take more then " + totalDiscountAmount + " items");
         }
 
         final BigDecimal price = cartItem.getProduct().getPrice();
-        final BigDecimal discountPrice = price.multiply(discount.getPercentageDiscount());
+        final BigDecimal discountPrice = price.multiply(this.getPercentageDiscount(discount));
 
 
-        int discountedItems = (orderAmount / discount.getTotalProduct()) * discount.getTotalProduct();
+        int discountedItems = (orderAmount / totalDiscountAmount) * totalDiscountAmount;
         int noDiscountedItems = orderAmount - discountedItems;
 
 
         return BigDecimal.valueOf(discountedItems).multiply(discountPrice).add(BigDecimal.valueOf(noDiscountedItems).multiply(price));
+    }
+
+    public BigDecimal getPercentageDiscount(BuyXGetYFreeDiscount discount) {
+        return BigDecimal.ONE.min(BigDecimal.valueOf(discount.getFreeProductAmount()).
+                divide(BigDecimal.valueOf(discount.getBuyNProductAmount() + discount.getFreeProductAmount()), 2, RoundingMode.HALF_UP));
     }
 }

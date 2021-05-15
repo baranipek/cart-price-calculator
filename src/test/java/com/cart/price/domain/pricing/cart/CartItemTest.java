@@ -9,11 +9,13 @@ import com.cart.price.domain.pricing.BuyXGetFreeYPricing;
 import com.cart.price.domain.pricing.Pricing;
 import com.cart.price.domain.product.Product;
 import com.cart.price.domain.product.UnitProduct;
+import com.cart.price.exception.ProductIsNotInStockException;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CartItemTest {
 
@@ -27,6 +29,7 @@ public class CartItemTest {
         Product watch = new UnitProduct();
         watch.setName("watch");
         watch.setPrice(BigDecimal.TEN);
+        watch.setProductCode("productCode");
 
         CartItem cartItem = new CartItem(pricing);
         cartItem.setProduct(watch);
@@ -36,6 +39,7 @@ public class CartItemTest {
         Product watch1 = new UnitProduct();
         watch1.setName("watch1");
         watch1.setPrice(BigDecimal.valueOf(5));
+        watch1.setProductCode("productCode1");
 
         CartItem cartItem1 = new CartItem(pricing);
         cartItem1.setProduct(watch1);
@@ -56,6 +60,8 @@ public class CartItemTest {
         Product watch = new UnitProduct();
         watch.setName("watch");
         watch.setPrice(BigDecimal.TEN);
+        watch.setProductCode("productCode");
+
 
         CartItem cartItem = new CartItem(pricing);
         cartItem.setProduct(watch);
@@ -68,6 +74,7 @@ public class CartItemTest {
         Product watch1 = new UnitProduct();
         watch1.setName("watch1");
         watch.setPrice(BigDecimal.TEN);
+        watch1.setProductCode("productCode1");
 
         CartItem cartItem1 = new CartItem(pricing);
         cartItem1.setProduct(watch);
@@ -78,6 +85,24 @@ public class CartItemTest {
         cart.addItem(cartItem1);
 
         assertEquals(cart.getTotalOrder().compareTo(BigDecimal.valueOf(65)), 0);
+
+    }
+
+    @Test
+    void GivenProductIsNotInTheStock_WhenCalculate_ThenThrowProductIsNotInStockException() {
+        Pricing pricing = new BuyXGetFreeYPricing();
+        cart = new Cart();
+        Product watch = new UnitProduct();
+        watch.setName("watch");
+        watch.setPrice(BigDecimal.TEN);
+        watch.setProductCode("wrongProduct");
+
+        CartItem cartItem = new CartItem(pricing);
+        cartItem.setProduct(watch);
+        cartItem.setAmount(BigDecimal.valueOf(11));
+        cartItem.setDiscount(new BuyXGetYFreeDiscount(3, 2));
+
+        assertThrows(ProductIsNotInStockException.class, () ->  cart.addItem(cartItem));
 
     }
 }

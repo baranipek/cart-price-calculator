@@ -1,31 +1,16 @@
 package com.cart.price.domain.discount;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.math.BigDecimal;
 
+@Data
+@AllArgsConstructor
 public class BuyXForYAmountDiscount implements Discount {
 
     private BigDecimal amount;
     private BigDecimal amountPrice;
 
-    public BuyXForYAmountDiscount(BigDecimal amount, BigDecimal amountPrice) {
-        this.amount = amount;
-        this.amountPrice = amountPrice;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public BigDecimal getAmountPrice() {
-        return amountPrice;
-    }
-
-    public void setAmountPrice(BigDecimal amountPrice) {
-        this.amountPrice = amountPrice;
-    }
 
 }
