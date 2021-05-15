@@ -1,50 +1,44 @@
 package com.cart.price.domain.discount;
 
+import java.math.BigDecimal;
+
 public class BuyXGetYFreeDiscount implements Discount {
 
-    private int buyNProductAmount;
-    private int freeProductAmount;
+    private BigDecimal buyNProductAmount;
+    private BigDecimal freeProductAmount;
 
-    public BuyXGetYFreeDiscount(int buyNProductAmount, int getYFreeProduct) {
+    public BuyXGetYFreeDiscount(BigDecimal buyNProductAmount, BigDecimal getYFreeProduct) {
         this.buyNProductAmount = buyNProductAmount;
         this.freeProductAmount = getYFreeProduct;
     }
 
-    public int getFreeProductAmount() {
+    public BigDecimal getFreeProductAmount() {
         return freeProductAmount;
     }
 
-    public void setFreeProductAmount(int freeProductAmount) {
+    public void setFreeProductAmount(BigDecimal freeProductAmount) {
         this.freeProductAmount = freeProductAmount;
     }
 
-    public int getBuyNProductAmount() {
+    public BigDecimal getBuyNProductAmount() {
         return buyNProductAmount;
     }
 
-    public void setBuyNProductAmount(int buyNProductAmount) {
+    public void setBuyNProductAmount(BigDecimal buyNProductAmount) {
         this.buyNProductAmount = buyNProductAmount;
     }
 
-    public double getCostProductAsDouble() {
+    public BigDecimal getCostProductAsDouble() {
         return buyNProductAmount;
     }
 
-    public double getFreeProductAsDouble() {
-        return freeProductAmount;
-    }
+    public BigDecimal getFreeProduct() { return freeProductAmount; }
 
-    public int getTotalProductDiscount() {
-        return freeProductAmount + buyNProductAmount;
-    }
 
-    public double getTotalProductAsDouble() {
-        return freeProductAmount + buyNProductAmount;
-    }
+    public BigDecimal getTotalProduct() { return freeProductAmount.add(buyNProductAmount); }
 
-    public double getPercentageDiscount() {
-
-        return (1 - getFreeProductAsDouble() / getTotalProductAsDouble());
+    public BigDecimal getPercentageDiscount() {
+        return (BigDecimal.ONE.min(getFreeProduct().divide(getTotalProduct())));
     }
 
 }
