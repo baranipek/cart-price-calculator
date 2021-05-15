@@ -12,7 +12,7 @@ public class CartItemValidator {
             throw new CartItemException("Cart Item can not be null");
         }
         if (cartItem.getProduct() == null) {
-            throw new CartItemException("Product  can not be null");
+            throw new CartItemException("Product can not be null");
         }
 
         if (cartItem.getProduct().getName() == null) {

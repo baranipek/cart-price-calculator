@@ -1,44 +1,50 @@
 package com.cart.price.domain.discount;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class BuyXGetYFreeDiscount implements Discount {
 
-    private BigDecimal buyNProductAmount;
-    private BigDecimal freeProductAmount;
+    private int buyNProductAmount;
+    private int freeProductAmount;
 
-    public BuyXGetYFreeDiscount(BigDecimal buyNProductAmount, BigDecimal getYFreeProduct) {
+    public BuyXGetYFreeDiscount(int buyNProductAmount, int getYFreeProduct) {
         this.buyNProductAmount = buyNProductAmount;
         this.freeProductAmount = getYFreeProduct;
     }
 
-    public BigDecimal getFreeProductAmount() {
+    public int getFreeProductAmount() {
         return freeProductAmount;
     }
 
-    public void setFreeProductAmount(BigDecimal freeProductAmount) {
+    public void setFreeProductAmount(int freeProductAmount) {
         this.freeProductAmount = freeProductAmount;
     }
 
-    public BigDecimal getBuyNProductAmount() {
+    public int getBuyNProductAmount() {
         return buyNProductAmount;
     }
 
-    public void setBuyNProductAmount(BigDecimal buyNProductAmount) {
+    public void setBuyNProductAmount(int buyNProductAmount) {
         this.buyNProductAmount = buyNProductAmount;
     }
 
-    public BigDecimal getCostProductAsDouble() {
+    public int getCostProductAsDouble() {
         return buyNProductAmount;
     }
 
-    public BigDecimal getFreeProduct() { return freeProductAmount; }
+    public int getFreeProduct() {
+        return freeProductAmount;
+    }
 
 
-    public BigDecimal getTotalProduct() { return freeProductAmount.add(buyNProductAmount); }
+    public int getTotalProduct() {
+        return freeProductAmount + buyNProductAmount;
+    }
 
     public BigDecimal getPercentageDiscount() {
-        return (BigDecimal.ONE.min(getFreeProduct().divide(getTotalProduct())));
+        return BigDecimal.ONE.min(BigDecimal.valueOf(getFreeProduct()).
+                divide(BigDecimal.valueOf(getTotalProduct()), 2, RoundingMode.HALF_UP));
     }
 
 }

@@ -34,5 +34,4 @@ public abstract class Product {
         this.name = name;
     }
 
-
 }
