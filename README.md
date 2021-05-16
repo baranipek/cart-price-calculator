@@ -12,8 +12,12 @@ Some things in supermarkets have simple prices: this can of beans costs $0.65. O
 
 • buy two, get one free (so does the third item have a price?)
 
-The exercise is to experiment with a model that is flexible enough to deal with these (and other) pricing schemes, and at the same time are generally usable how do you keep an audit trail of pricing decisions.
+
 
 # testing 
 
-please navigate to project folder and run mvn clean test command 
+- Open a terminal and inside `cart-price-calculator` root folder run
+
+  ```
+   mvn clean test 
+  ```
