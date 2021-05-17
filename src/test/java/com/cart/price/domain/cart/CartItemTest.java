@@ -1,10 +1,10 @@
 package com.cart.price.domain.cart;
 
-import com.cart.price.domain.Pricing;
+import com.cart.price.domain.pricing.Pricing;
 import com.cart.price.domain.discount.BuyXForYAmountDiscount;
 import com.cart.price.domain.discount.BuyXGetYFreeDiscount;
-import com.cart.price.domain.BuyXForYAmountPricing;
-import com.cart.price.domain.BuyXGetFreeYPricing;
+import com.cart.price.domain.pricing.BuyXForYAmountPricing;
+import com.cart.price.domain.pricing.BuyXGetFreeYPricing;
 import com.cart.price.domain.product.Product;
 import com.cart.price.domain.product.UnitProduct;
 import com.cart.price.exception.ProductIsNotInStockException;

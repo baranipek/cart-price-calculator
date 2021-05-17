@@ -2,7 +2,7 @@
 package com.cart.price.util;
 
 import com.cart.price.domain.cart.CartItem;
-import com.cart.price.domain.UnitPricing;
+import com.cart.price.domain.pricing.UnitPricing;
 import com.cart.price.domain.product.Product;
 import com.cart.price.domain.product.UnitProduct;
 import com.cart.price.exception.CartItemException;

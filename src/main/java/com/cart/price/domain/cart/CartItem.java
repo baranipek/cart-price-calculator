@@ -1,7 +1,7 @@
 package com.cart.price.domain.cart;
 
 import com.cart.price.domain.discount.Discount;
-import com.cart.price.domain.Pricing;
+import com.cart.price.domain.pricing.Pricing;
 import com.cart.price.domain.product.Product;
 import com.cart.price.enumeration.WeightUnit;
 

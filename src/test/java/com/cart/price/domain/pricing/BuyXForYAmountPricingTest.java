@@ -1,6 +1,5 @@
 package com.cart.price.domain.pricing;
 
-import com.cart.price.domain.BuyXForYAmountPricing;
 import com.cart.price.domain.cart.CartItem;
 import com.cart.price.domain.discount.BuyXForYAmountDiscount;
 import com.cart.price.domain.product.Product;

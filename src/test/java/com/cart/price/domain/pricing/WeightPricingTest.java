@@ -1,6 +1,5 @@
 package com.cart.price.domain.pricing;
 
-import com.cart.price.domain.WeightPricing;
 import com.cart.price.domain.cart.CartItem;
 import com.cart.price.domain.product.WeightProduct;
 import com.cart.price.enumeration.WeightUnit;
